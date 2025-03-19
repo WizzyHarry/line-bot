@@ -14,9 +14,9 @@ CHANNEL_SECRET = os.getenv('eb662dcadc93e62b412bdf2c1113a86b')
 
 
 # Debugging
-if not CHANNEL_ACCESS_TOKEN or not CHANNEL_SECRET:
-    print("Error: CHANNEL_ACCESS_TOKEN or CHANNEL_SECRET is not set properly.")
-    exit(1)
+#if not CHANNEL_ACCESS_TOKEN or not CHANNEL_SECRET:
+#    print("Error: CHANNEL_ACCESS_TOKEN or CHANNEL_SECRET is not set properly.")
+#    exit(1)
 
 
 # Initialize app and LINE API
