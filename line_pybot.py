@@ -1,12 +1,23 @@
+import os
 from flask import Flask, request, abort
+from dotenv import load_dotenv
 from linebot import LineBotApi, WebhookHandler
 from linebot.exceptions import InvalidSignatureError
 from linebot.models import MessageEvent, TextMessage, TextSendMessage, ImageSendMessage, VideoSendMessage
-import os
+
+
+load_dotenv()
 
 # Environment variables for deployment
-CHANNEL_ACCESS_TOKEN = os.environ.get('XTux+dcUCXcUqKCED5VM0fl4W6AuEEAYdv76NeFVCLAzCjfgPcAcf/YpX3XXpvHBJ/lZdpXZAVi++pw3WHosrDAeEBJccUuO7hS9Jsoc7WKj0argZrCs1AwmJSPp9nFaDOGyLBnILnw1GFNF8G+3iAdB04t89/1O/w1cDnyilFU=')
-CHANNEL_SECRET = os.environ.get('eb662dcadc93e62b412bdf2c1113a86b')
+CHANNEL_ACCESS_TOKEN = os.getenv('XTux+dcUCXcUqKCED5VM0fl4W6AuEEAYdv76NeFVCLAzCjfgPcAcf/YpX3XXpvHBJ/lZdpXZAVi++pw3WHosrDAeEBJccUuO7hS9Jsoc7WKj0argZrCs1AwmJSPp9nFaDOGyLBnILnw1GFNF8G+3iAdB04t89/1O/w1cDnyilFU=')
+CHANNEL_SECRET = os.getenv('eb662dcadc93e62b412bdf2c1113a86b')
+
+
+# Debugging
+if not CHANNEL_ACCESS_TOKEN or not CHANNEL_SECRET:
+    print("Error: CHANNEL_ACCESS_TOKEN or CHANNEL_SECRET is not set properly.")
+    exit(1)
+
 
 # Initialize app and LINE API
 app = Flask(__name__)
