@@ -5,8 +5,8 @@ from linebot.models import MessageEvent, TextMessage, TextSendMessage, ImageSend
 import os
 
 # Environment variables for deployment
-CHANNEL_ACCESS_TOKEN = os.getenv('CHANNEL_ACCESS_TOKEN')
-CHANNEL_SECRET = os.getenv('CHANNEL_SECRET')
+CHANNEL_ACCESS_TOKEN = os.getenv('XTux+dcUCXcUqKCED5VM0fl4W6AuEEAYdv76NeFVCLAzCjfgPcAcf/YpX3XXpvHBJ/lZdpXZAVi++pw3WHosrDAeEBJccUuO7hS9Jsoc7WKj0argZrCs1AwmJSPp9nFaDOGyLBnILnw1GFNF8G+3iAdB04t89/1O/w1cDnyilFU=')
+CHANNEL_SECRET = os.getenv('eb662dcadc93e62b412bdf2c1113a86b')
 
 # Initialize app and LINE API
 app = Flask(__name__)
