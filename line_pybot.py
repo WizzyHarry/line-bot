@@ -45,7 +45,8 @@ COMMANDS = {
             "\n!family"
             "\n!settings"
             "\n!account switching"
-            "\n!ua"    
+            "\n!ua"
+            "\nfor datamine data do !###. Ex: !105"    
         )
     },
     "cat": {
@@ -256,7 +257,8 @@ COMMANDS = {
             "\nAt first glance the steps for UA are extreme, however it's important to note the armor is acquired over "
             "a span of 5 months. The UA is achievable completely f2p, if you have questions on how to use your gems "
             "sparingly please message your GM."
-        )
+        ),
+        "value": "https://i.imgur.com/BR3S2dC.jpeg"
     },
     "good boy": {
         "type": "text",
@@ -275,7 +277,7 @@ COMMANDS = {
         "value": (
             "Welcome to Lost Family!\n"
             "\nWe're excited to have you join us! Lost Family is a collection of guilds that actively work together, "
-            "as a whole we're apart of the Coalition alliance. If you could please answer these questions, no stress, "
+            "as a whole we're apart of the Covenant alliance. If you could please answer these questions, no stress, "
             "this obviously isn't a real interview, we'd just like to learn a little about you!\n"
             "\n1. What is your account level?\n"
             "\n2. What guild were you in before?\n"
@@ -292,6 +294,11 @@ COMMANDS = {
         "value": (
             "I'm a good boy, yes I am."
         )
+    },
+    "105": {
+        "type": "image",
+        "text": "Datamine for season 105. Credits for Kobe for creation.",
+        "value": "https://i.imgur.com/ArNuc8o.jpeg"
     } 
 
 
