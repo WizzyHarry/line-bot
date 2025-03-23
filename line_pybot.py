@@ -304,6 +304,33 @@ COMMANDS = {
 
 }
 
+
+recent_messages = {}  # Store recent messages per group or user
+
+@handler.add(MessageEvent, message=TextMessage)
+def handle_message(event):
+    text = event.message.text.lower().strip()
+    user_id = event.source.user_id
+
+    # Store the latest message (excluding commands)
+    if not text.startswith('!'):
+        recent_messages[user_id] = text
+        return
+
+    # Repeat the last message
+    if text == '!unsend':
+        if user_id in recent_messages:
+            line_bot_api.reply_message(
+                event.reply_token,
+                TextSendMessage(text=recent_messages[user_id])
+            )
+        else:
+            line_bot_api.reply_message(
+                event.reply_token,
+                TextSendMessage(text="No message data.")
+            )
+
+
 @app.route("/callback", methods=['POST'])
 def callback():
     signature = request.headers['X-Line-Signature']
