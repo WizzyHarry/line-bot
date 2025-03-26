@@ -46,7 +46,8 @@ COMMANDS = {
             "\n!settings"
             "\n!account switching"
             "\n!ua"
-            "\nfor datamine data do !###. Ex: !105"    
+            "\nfor datamine data do !num (!105)"
+            "\n!calendar"    
         )
     },
     "cat": {
@@ -299,46 +300,32 @@ COMMANDS = {
         "type": "image",
         "text": "Datamine for season 105. Credits for Kobe for creation.",
         "value": "https://i.imgur.com/ArNuc8o.jpeg"
-    } 
+    },
+    "calendar": {
+        "type": "image",
+        "text": "uhhhhhhhhhhhhh",
+        "value": "https://i.imgur.com/iSBZ0bx.jpeg"
+    },
+    "stink": {
+        "type": "text",
+        "value": "wow you smell AWFUL. Take a shower bud"
+    },
+    "racist": {
+        "type": "text",
+        "value": "you sick fuck"
+    },
+    "ハムスター": {
+        "type": "video",
+        "text": "",
+        "video_url": "https://i.imgur.com/gbH3N9m.mp4",
+        "preview_image_url": "https://i.ytimg.com/vi/ox34KNKx8ew/mqdefault.jpg"
+    }
 
 
 }
 
 
-recent_messages = {}  # Store recent messages per group
-unsent_messages = {}  # Store unsent messages per group
 
-@handler.add(MessageEvent, message=TextMessage)
-def handle_message(event):
-    text = event.message.text.lower().strip()
-    group_id = event.source.group_id if event.source.type == 'group' else None
-
-    if group_id is None:
-        return  # Do nothing if the message is not from a group
-
-    # Store the latest message (excluding commands)
-    if not text.startswith('!'):
-        # Save the message and mark it as unsent in the group
-        recent_messages[group_id] = {'message': text, 'sent': False}
-        return
-
-    # Command to send the last unsent message in the group
-    if text == '!unsend':
-        # Look for the last unsent message in the group
-        if group_id in recent_messages and not recent_messages[group_id]['sent']:
-            message = recent_messages[group_id]['message']
-            # Send the message
-            line_bot_api.reply_message(
-                event.reply_token,
-                TextSendMessage(text=message)
-            )
-            # Mark the message as sent
-            recent_messages[group_id]['sent'] = True
-        else:
-            line_bot_api.reply_message(
-                event.reply_token,
-                TextSendMessage(text="No unsent messages in this group.")
-            )
 
 
 
