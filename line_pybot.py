@@ -24,6 +24,10 @@ app = Flask(__name__)
 line_bot_api = LineBotApi(CHANNEL_ACCESS_TOKEN)
 handler = WebhookHandler(CHANNEL_SECRET)
 
+# admin account ID's
+ADMIN_USERS = ["cummywummies"]
+
+
 # Command responses
 COMMANDS = {
     "help": {
@@ -47,7 +51,8 @@ COMMANDS = {
             "\n!account switching"
             "\n!ua"
             "\nfor datamine data do !num (!105)"
-            "\n!calendar"    
+            "\n!calendar"
+            "\n!epic boss"    
         )
     },
     "cat": {
@@ -314,7 +319,7 @@ COMMANDS = {
         "type": "text",
         "value": "you sick fuck"
     },
-    "ハムスター": {
+    "pause": {
         "type": "video",
         "text": "",
         "video_url": "https://i.imgur.com/gbH3N9m.mp4",
@@ -351,6 +356,17 @@ def handle_message(event):
     
     # Commands with spaces instead of _
     command = text[1:].strip()  # Extract the command
+
+    # getting adminID
+    if command == "myid":
+        sender_id = event.source.user_id
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text=f"Your LINE ID is: {sender_id}")
+        )
+        return
+    
+    # normal command msg formats
     response = COMMANDS.get(command)
     
     if response:
@@ -382,6 +398,73 @@ def handle_message(event):
             event.reply_token,
             TextSendMessage(text=(f"No response found for '!{command}'.Use !help for a full list of commands"))
         )
+
+
+# linepy functions, linepy is not supported by LINE
+from linepy import LINE, Poll
+
+
+LINE_USER_EMAIL = os.getenv("LINE_USER_EMAIL")
+LINE_USER_PASSWORD = os.getenv("LINE_USER_PASSWORD")
+
+
+# my login credentials
+line_client = LINE(LINE_USER_EMAIL, LINE_USER_PASSWORD)
+poll = Poll(line_client)
+
+
+def unofficial_event_listener():
+
+    while True:
+        try:
+
+            ops = poll.singleTrace(count=50)
+            for op in ops:
+                # Assume op.type == 124 corresponds to a group invitation event.
+                if op.type == 124:
+                    group_id = op.param1   # Group ID 
+                    inviter = op.param2    # The user who sent the invitation
+                    invitee = op.param3    # The user being invited
+                    # Check if the inviter is admin
+                    if inviter not in ADMIN_USERS:
+
+                        # Attempt to cancel the invitation.
+                        try:
+                            # cancels the invitation for the given invitee in the group.
+                            line_client.cancelGroupInvitation(group_id, [invitee])
+
+                        except Exception as e:
+                            print(f"Failed to cancel invitation for {invitee}: {e}")
+                        # remove the non-admin inviter from the group.
+                        try:
+                            line_client.kickoutFromGroup(group_id, [inviter])
+
+                        except Exception as e:
+                            print(f"Failed to remove unauthorized inviter {inviter}: {e}")
+            # Pause briefly before polling for the next batch of events.
+                elif op.type == 19:
+                    group_id = op.param1 # Group ID
+                    operator = op.param2 # user who kicked
+                    kicked = op.param3 # user who was kicked
+
+                    if operator not in ADMIN_USERS and operator != kicked:
+                        try:
+                            line_client.kickoutFromGroup(group_id, [operator])
+                        except Exception as e:
+                            print(f"Failed to remove non-admin")
+
+            time.sleep(2)
+        except Exception as e:
+            print("Error in event listener:", e)
+            time.sleep(5)
+
+
+def start_unofficial_listener():
+    listener_thread = threading.Thread(target=unofficial_event_listener)
+    listener_thread.daemon = True
+    listener_thread.start()
+
+
 
 if __name__ == "__main__":
     port = int(os.getenv("PORT", 5000))
