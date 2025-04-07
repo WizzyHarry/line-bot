@@ -403,7 +403,8 @@ def handle_message(event):
 
 
 # linepy functions, linepy is not supported by LINE
-from linepy import LINE, Poll
+from linepy import LINE
+from linepy.lib.poll import Poll # type: ignore
 
 
 LINE_USER_EMAIL = os.getenv("LINE_USER_EMAIL")
