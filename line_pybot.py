@@ -403,8 +403,7 @@ def handle_message(event):
 
 
 # linepy functions, linepy is not supported by LINE
-from linepy import LINE
-from linepy.lib.poll import Poll # type: ignore
+from linepy import LINE, OEPoll
 
 
 LINE_USER_EMAIL = os.getenv("LINE_USER_EMAIL")
@@ -413,7 +412,7 @@ LINE_USER_PASSWORD = os.getenv("LINE_USER_PASSWORD")
 
 # my login credentials
 line_client = LINE(LINE_USER_EMAIL, LINE_USER_PASSWORD)
-poll = Poll(line_client)
+poll = OEPoll(line_client)
 
 
 def unofficial_event_listener():
