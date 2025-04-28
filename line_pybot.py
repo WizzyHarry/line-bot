@@ -317,10 +317,6 @@ COMMANDS = {
         "type": "text",
         "value": "wow you smell AWFUL. Take a shower bud"
     },
-    "racist": {
-        "type": "text",
-        "value": "you sick fuck"
-    },
     "pause": {
         "type": "video",
         "text": "",
@@ -359,14 +355,6 @@ def handle_message(event):
     # Commands with spaces instead of _
     command = text[1:].strip()  # Extract the command
 
-    # getting adminID
-    if command == "myid":
-        sender_id = event.source.user_id
-        line_bot_api.reply_message(
-            event.reply_token,
-            TextSendMessage(text=f"Your LINE ID is: {sender_id}")
-        )
-        return
     
     # normal command msg formats
     response = COMMANDS.get(command)
@@ -402,6 +390,16 @@ def handle_message(event):
         )
 
 
+
+if __name__ == "__main__":
+    port = int(os.getenv("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)
+
+
+
+
+# linepy functions progress. Would be used in different bot
+"""
 # linepy functions, linepy is not supported by LINE
 from linepy import LINE, OEPoll
 
@@ -465,9 +463,4 @@ def start_unofficial_listener():
     listener_thread = threading.Thread(target=unofficial_event_listener)
     listener_thread.daemon = True
     listener_thread.start()
-
-
-
-if __name__ == "__main__":
-    port = int(os.getenv("PORT", 5000))
-    app.run(host="0.0.0.0", port=port)
+"""
