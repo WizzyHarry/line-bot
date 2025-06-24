@@ -11,7 +11,7 @@
 
 ### Creation
 
-<p> The bot is created entirely through Python, utilizing packages such as linebot, os and packages dotenv and flask for deployment processes. </n></p>
+<p> The bot is created entirely through Python, utilizing packages such as linebot, os, dotenv and flask in deployment/development processes. </n></p>
 
 <p> Images and videos were uploaded to a free site, imgur, in order to be called by the bot. </p>
 
