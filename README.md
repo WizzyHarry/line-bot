@@ -10,7 +10,11 @@ For example:
 - Typing `!chests` displays chest system info.  
 - Typing `!help` displays all available commands. 
 
+<<<<<<< HEAD
 <br>
+=======
+<p> The bot is created entirely through Python, utilizing packages such as linebot, os, dotenv and flask in deployment/development processes. </n></p>
+>>>>>>> 945064a8dbc32db0ae0fc567fa2fda93dd0138cd
 
 ## Creation
 
