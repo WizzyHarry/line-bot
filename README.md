@@ -10,12 +10,6 @@ For example:
 - Typing `!chests` displays chest system info.  
 - Typing `!help` displays all available commands. 
 
-<<<<<<< HEAD
-<br>
-=======
-<p> The bot is created entirely through Python, utilizing packages such as linebot, os, dotenv and flask in deployment/development processes. </n></p>
->>>>>>> 945064a8dbc32db0ae0fc567fa2fda93dd0138cd
-
 ## Creation
 
 <p>The bot is created and maintained through a Python script. It is connected to LINE's development studio via a channel access token and key. The script utilizes the Python packages `dotenv` and `flask` for hosting, while transaction/response commands are configured with LINE’s `linebot` package. It can be used in both individual conversations and large groups.</p>
