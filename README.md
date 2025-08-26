@@ -1,36 +1,40 @@
-## Automated Response ChatBot
+# Automated Response ChatBot
 
-### The Purpose
+**Keith Faunce**
 
-<p> This chatbot is purely for entertainment purposes, it is not a product. The bot is designed to help assist new and current players
- in the mobile game knights and dragons. As a leader in my game community, I noticed that many new players had similar questions. 
- The bot contains answers for these questions, in response to a keyword led by an !. For example, if you had a question about the games
- chest system, you'd type !chests. A !help command is avaliable to display the list of commands. </p>
+## The Purpose
 
-</n>
+This chatbot is purely for entertainment purposes; it is not a product. The bot is designed to assist new and current players of the mobile game *Knights and Dragons*. As a leader in the game's community, I noticed that many new players had similar questions. The bot answers these questions using keyword-triggered responses.  
 
-### Creation
+For example:  
+- Typing `!chests` displays chest system info.  
+- Typing `!help` displays all available commands. 
 
-<p> The bot is created entirely through Python, utilizing packages such as linebot, os and packages dotenv and flask for deployment processes. </n></p>
+<br>
 
-<p> Images and videos were uploaded to a free site, imgur, in order to be called by the bot. </p>
+## Creation
 
-* Link to .py file: [python_bot](line_pybot.py)
+<p>The bot is created and maintained through a Python script. It is connected to LINE's development studio via a channel access token and key. The script utilizes the Python packages `dotenv` and `flask` for hosting, while transaction/response commands are configured with LINE’s `linebot` package. It can be used in both individual conversations and large groups.</p>
 
-</n>
+To display images and videos in real-time, I used **Imgur** to upload all media files.
 
-### Deployment
+* Link to .py file: [Chatbot](line_pybot.py)
 
-<p> The bot is deployed on the LINE communication app. It is being hosted through the service Render, utilizing github for the necessary files. 
- The bot uses LINE's access tokens to connect to their servers. </p>
+<br>
 
-#### Render Live Feed
+## Deployment
+
+_LINE is a communication app traditionally used in Japan, iconically known for its creative sticker packs. The Knights & Dragons community began using LINE long before I came around._  
+
+LINE Developer Studio issues token credentials for deploying the bot, but it does not support hosting. To solve this, the script is hosted on **Render**, a cloud application platform that provides free web services. Render connects directly to my GitHub repository. When I push updates to GitHub, Render automatically pulls the new code, installs the required Python packages from *requirements.txt*, and redeploys the bot.  
+
+### Render Live Feed
 
 <b> April 28th logs </b>
 
 ![render_logs](img/readme1.PNG)
 
-#### In Action
+### In Action
 
 ![chat_msgs](img/readme2.jpg)
 
